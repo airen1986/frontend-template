@@ -16,7 +16,7 @@ A modern frontend starter template built with **Vite**, **Bootstrap 5**, and **S
 
 ### Prerequisites
 
-- Node.js 18+ (see `.nvmrc`)
+- Node.js 20+ (see `.nvmrc`)
 - npm
 
 ### Installation
