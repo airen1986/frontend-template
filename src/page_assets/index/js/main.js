@@ -2,8 +2,19 @@ import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 window.bootstrap = bootstrap;
 import '../../../scss/styles.scss';
 
-import { toastSuccess, toastError, toastWarning, toastInfo, confirm } from '../../../common/js/toast';
-import { bsToastSuccess, bsToastError, bsToastWarning, bsToastInfo } from '../../../common/js/bsToast';
+import {
+  toastSuccess,
+  toastError,
+  toastWarning,
+  toastInfo,
+  confirm,
+} from '../../../common/js/toast';
+import {
+  bsToastSuccess,
+  bsToastError,
+  bsToastWarning,
+  bsToastInfo,
+} from '../../../common/js/bsToast';
 import { $, on } from '../../../common/js/dom';
 
 // SweetAlert2 toast demo buttons
