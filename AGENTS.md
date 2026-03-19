@@ -20,45 +20,91 @@ This document defines coding conventions for AI agents working in this repositor
 ## File Structure Conventions
 
 - HTML pages go in `src/` (e.g. `src/my-page.html`). Vite auto-discovers them.
-- Page-specific JS goes in `src/page_assets/<page-name>/js/main.js`.
-- Page-specific CSS goes in `src/page_assets/<page-name>/css/`.
-- Shared/reusable JS utilities go in `src/common/js/`.
-- Shared/reusable CSS goes in `src/common/css/`.
-- SCSS variables and component overrides go in `src/scss/`.
+- Each page has a dedicated folder: `src/page_assets/<page-name>/`.
+  - Entry JS: `src/page_assets/<page-name>/js/main.js` (referenced by the HTML `<script>` tag).
+  - Additional JS modules: `src/page_assets/<page-name>/js/<script-name>.js`.
+  - Page CSS: `src/page_assets/<page-name>/css/<page-name>.css`.
+- `src/common/` — **READ-ONLY**. Contains shared utilities (`api.js`, `toast.js`, `bsToast.js`, `dom.js`) and shared CSS (`custom.css`). Do NOT add or modify files here.
+- `src/scss/` — **READ-ONLY**. Do not add or modify SCSS files.
 - Static assets (images, fonts) go in `src/public/`.
 - Icons: use Font Awesome classes (`fa-solid`, `fa-regular`, `fa-brands`). Do NOT add icon image files or SVG sprite sheets.
+
+## Folder Isolation Rules
+
+- **`src/common/` and `src/scss/` are READ-ONLY.** Never create, edit, or delete files in these folders.
+- **All new JS and CSS must be page-specific.** Place it under `src/page_assets/<page-name>/js/` or `src/page_assets/<page-name>/css/` — never in `src/common/`.
+- Do not create catch-all or "shared" files (e.g. `utils.js`, `helpers.css`) inside a new page folder either — split logic into focused, well-named modules within that page's `js/` subfolder.
+- `src/common/` utilities may be *imported* by page scripts but must not be modified.
 
 ## Styling Rules
 
 - Always use Bootstrap utility classes first (e.g. `mt-3`, `d-flex`, `text-muted`).
-- For custom styles, write SCSS in the appropriate component file under `src/scss/components/`.
-- Use the existing SCSS variables from `_variables.scss` — do not hardcode colors or spacing values.
+- **Write custom styles as plain CSS, not SCSS.** Only write SCSS when you genuinely need SCSS features (nesting, variables, mixins) that cannot be replicated with plain CSS and Bootstrap utilities.
+- All custom CSS must be page-specific: `src/page_assets/<page-name>/css/<page-name>.css`. Do NOT add styles to `src/common/css/`.
+- Use Bootstrap's CSS custom properties (`var(--bs-primary)`, `var(--bs-body-bg)`, etc.) instead of hardcoding colors or spacing values.
+- Do NOT write new SCSS component files under `src/scss/components/`.
 - Keep custom CSS minimal; prefer Bootstrap's built-in classes.
 - All buttons should use Bootstrap button classes (`btn btn-primary`, `btn-outline-danger`, etc.).
+
+### Linking CSS in the entry JS file
+
+```js
+import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+window.bootstrap = bootstrap;
+import '../../../scss/styles.scss';        // Bootstrap + SCSS theme
+import '../../../common/css/custom.css';   // existing shared overrides (READ-ONLY — do not edit)
+import '../css/<page-name>.css';           // page-specific styles
+```
 
 ## JavaScript Rules
 
 - Use ES module `import`/`export` syntax.
-- Use the existing utilities where applicable:
+- **`main.js` is the sole entry point** for each page. It is the only file referenced by the HTML `<script>` tag.
+- **Additional JS for a page** must be split into focused modules at `src/page_assets/<page-name>/js/<script-name>.js` and imported by `main.js`. Examples: `table.js`, `form.js`, `chart.js`.
+- **Do NOT add new files to `src/common/js/`.** It is READ-ONLY. Only import from it.
+- Use the existing common utilities where applicable (import-only — do not modify):
   - `src/common/js/api.js` — for all HTTP requests (uses `VITE_API_BASE_URL`).
   - `src/common/js/toast.js` — for SweetAlert2 toast notifications.
   - `src/common/js/bsToast.js` — for Bootstrap native toast notifications.
   - `src/common/js/dom.js` — for DOM helpers (`$`, `$$`, `on`, `off`, `ready`).
 - Do not use `var`. Use `const` by default, `let` only when reassignment is needed.
 - Use `async`/`await` over `.then()` chains.
-- Each HTML page should have its own entry JS file that imports Bootstrap and the main stylesheet:
+- `main.js` must always start with the Bootstrap + SCSS imports:
   ```js
   import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
   window.bootstrap = bootstrap;
   import '../../../scss/styles.scss';
+  import '../../../common/css/custom.css'; // READ-ONLY
+  import '../css/<page-name>.css';
+  ```
+  Then import your page modules:
+  ```js
+  import './table.js';
+  import './form.js';
   ```
 
 ## Adding a New Page
 
 1. Create `src/<page-name>.html` with the standard `<head>` (charset, viewport, title, favicon, meta tags).
-2. Create `src/page_assets/<page-name>/js/main.js` with the Bootstrap + SCSS imports above.
-3. Reference the entry script in the HTML: `<script type="module" src="/page_assets/<page-name>/js/main.js"></script>`.
-4. Reuse the navbar and footer markup from `index.html`.
+2. Create `src/page_assets/<page-name>/js/main.js` — Bootstrap + SCSS + CSS imports, then import page modules.
+3. Create `src/page_assets/<page-name>/css/<page-name>.css` — page-specific styles.
+4. For each logical concern (table, form, chart, etc.) create `src/page_assets/<page-name>/js/<script-name>.js` and import it from `main.js`.
+5. Reference only the entry script in HTML: `<script type="module" src="/page_assets/<page-name>/js/main.js"></script>`.
+6. Reuse the navbar and footer markup from `index.html`.
+
+Expected folder layout for a page named `users`:
+```
+src/
+  users.html
+  page_assets/
+    users/
+      js/
+        main.js       ← entry point (Bootstrap imports + module imports)
+        table.js      ← table logic
+        form.js       ← form/validation logic
+      css/
+        users.css     ← page-specific styles
+```
 
 ## Environment Variables
 
