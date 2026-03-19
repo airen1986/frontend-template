@@ -39,7 +39,7 @@ This document defines coding conventions for AI agents working in this repositor
 ## Styling Rules
 
 - Always use Bootstrap utility classes first (e.g. `mt-3`, `d-flex`, `text-muted`).
-- **Write custom styles as plain CSS, not SCSS.** Only write SCSS when you genuinely need SCSS features (nesting, variables, mixins) that cannot be replicated with plain CSS and Bootstrap utilities.
+- **Write custom styles as plain CSS only.** `src/scss/` is READ-ONLY in this repository, so do not add new SCSS files.
 - All custom CSS must be page-specific: `src/page_assets/<page-name>/css/<page-name>.css`. Do NOT add styles to `src/common/css/`.
 - Use Bootstrap's CSS custom properties (`var(--bs-primary)`, `var(--bs-body-bg)`, etc.) instead of hardcoding colors or spacing values.
 - Do NOT write new SCSS component files under `src/scss/components/`.
