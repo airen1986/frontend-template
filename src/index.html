@@ -43,6 +43,7 @@
             <li class="nav-item"><a class="nav-link fw-bold" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link fw-bold" href="#features">Features</a></li>
             <li class="nav-item"><a class="nav-link fw-bold" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold" href="#css-showcase">CSS</a></li>
             <li class="nav-item"><a class="btn btn-dark ms-lg-3" href="#">Sign In</a></li>
           </ul>
         </div>
@@ -50,7 +51,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section>
       <div class="container py-5">
         <h1 class="display-4 fw-bold">Frontend Template</h1>
         <p class="lead mt-3">A modern starter template with Vite, Bootstrap 5, and SCSS.</p>
@@ -96,6 +97,125 @@
           This is a starter landing page built with Bootstrap 5 and Vite. Customize the SCSS
           variables, add your pages, and start building.
         </p>
+      </div>
+    </section>
+
+    <!-- CSS Showcase -->
+    <section id="css-showcase" class="pt-5 pb-4 border-top">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="index-badge-pill mb-2">index.css</span>
+          <h2 class="mt-2">CSS Showcase</h2>
+          <p class="text-muted">
+            Demonstrating classes from
+            <code>common/css/custom.css</code>
+            and
+            <code>page_assets/index/css/index.css</code>
+            .
+          </p>
+        </div>
+
+        <!-- Highlight box — index.css (.index-highlight-box) -->
+        <div class="index-highlight-box mb-4">
+          <p class="mb-1 fw-semibold">
+            <span class="index-badge-pill me-2">index.css</span>
+            <code>.index-highlight-box</code>
+          </p>
+          <p class="mb-0 text-muted">
+            A page-specific callout box styled with a primary-colored left border and the Bootstrap
+            tertiary background token.
+          </p>
+        </div>
+
+        <!-- Stats strip — index.css (.index-stat / .index-stat-label) -->
+        <div class="row text-center g-4 mb-5">
+          <div class="col-4">
+            <div class="index-stat">12</div>
+            <div class="index-stat-label">
+              <span class="index-badge-pill">index.css</span>
+              Pages
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="index-stat">3</div>
+            <div class="index-stat-label">
+              <span class="index-badge-pill">index.css</span>
+              Components
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="index-stat">100%</div>
+            <div class="index-stat-label">
+              <span class="index-badge-pill">index.css</span>
+              Vanilla JS
+            </div>
+          </div>
+        </div>
+
+        <!-- Card hover — common/css/custom.css (.card-hover) -->
+        <h5 class="mb-3">
+          <span class="badge bg-secondary me-2">common</span>
+          <code>.card-hover</code>
+          — hover for shadow
+        </h5>
+        <div class="row g-4 mb-5">
+          <div class="col-md-4">
+            <div class="card card-hover h-100">
+              <div class="card-body">
+                <h6 class="card-title">Card One</h6>
+                <p class="card-text text-muted">
+                  Hover over this card to see the shadow lift effect from
+                  <code>custom.css</code>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-hover h-100">
+              <div class="card-body">
+                <h6 class="card-title">Card Two</h6>
+                <p class="card-text text-muted">
+                  The
+                  <code>.card-hover</code>
+                  class adds a smooth
+                  <code>box-shadow</code>
+                  transition on hover.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-hover h-100">
+              <div class="card-body">
+                <h6 class="card-title">Card Three</h6>
+                <p class="card-text text-muted">
+                  No JavaScript needed — pure CSS transition using
+                  <code>var(--bs-*)</code>
+                  tokens.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text truncate — common/css/custom.css (.text-truncate-1) -->
+        <h5 class="mb-3">
+          <span class="badge bg-secondary me-2">common</span>
+          <code>.text-truncate-1</code>
+          — single-line overflow
+        </h5>
+        <div class="card mb-5">
+          <div class="card-body">
+            <p class="text-truncate-1" style="max-width: 400px">
+              This very long sentence will be clipped at the edge of its container and trailed with
+              an ellipsis instead of wrapping to a second line.
+            </p>
+            <p class="mb-0 text-muted small">
+              Max-width capped at 400 px to make the truncation visible.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
