@@ -93,7 +93,7 @@ import '../css/<page-name>.css';           // page-specific styles
 6. Reuse the navbar and footer markup from `index.html`.
 
 Expected folder layout for a page named `users`:
-```
+```text
 src/
   users.html
   page_assets/
