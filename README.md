@@ -7,8 +7,7 @@ A modern frontend starter template built with **Vite**, **Bootstrap 5**, and **S
 - **Vite** — fast dev server and optimized builds
 - **Bootstrap 5.3** — with deep SCSS variable customization (Brutopia theme)
 - **Sass** — modular SCSS architecture with components, layouts, mixins, and utilities
-- **SweetAlert2** — pre-configured toast and dialog helpers
-- **ESLint + Prettier + Stylelint** — linting and formatting out of the box
+- **ESLint + Prettier + Stylelint**
 - **Multi-page support** — Vite auto-discovers `.html` files in `src/`
 - **GitHub Actions CI** — build, lint, and format checks on every PR
 
@@ -60,8 +59,7 @@ npm run preview
 │   ├── common/
 │   │   └── js/
 │   │       ├── api.js           # Fetch-based API client
-│   │       ├── toast.js         # SweetAlert2 toast helpers
-│   │       └── dom.js           # DOM utility helpers
+│   │       └── dom.js
 │   ├── page_assets/
 │   │   └── index/
 │   │       └── js/main.js       # Entry point for index page
@@ -137,7 +135,6 @@ Pre-built helpers are available in `src/common/js/`:
 
 ```js
 import api from '@/common/js/api';
-import { toastSuccess } from '@/common/js/toast';
 import { $, on } from '@/common/js/dom';
 ```
 
