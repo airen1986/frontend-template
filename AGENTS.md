@@ -14,7 +14,7 @@ This document defines coding conventions for AI agents working in this repositor
 - **CSS**: Bootstrap 5.3 with custom SCSS variables (`src/scss/_variables.scss`)
 - **Icons**: Font Awesome 6 (free) — use `<i class="fa-solid fa-*">`, `<i class="fa-regular fa-*">`, or `<i class="fa-brands fa-*">` classes. Do NOT use Bootstrap Icons or inline SVGs.
 - **JS**: Vanilla ES modules (`type: "module"`)
-- **Alerts/Toasts**: SweetAlert2 (already installed) and Bootstrap native toasts
+- **Alerts/Toasts**: Bootstrap native toasts
 - **Package manager**: npm
 
 ## File Structure Conventions
@@ -24,7 +24,7 @@ This document defines coding conventions for AI agents working in this repositor
   - Entry JS: `src/page_assets/<page-name>/js/main.js` (referenced by the HTML `<script>` tag).
   - Additional JS modules: `src/page_assets/<page-name>/js/<script-name>.js`.
   - Page CSS: `src/page_assets/<page-name>/css/<page-name>.css`.
-- `src/common/` — **READ-ONLY**. Contains shared utilities (`api.js`, `toast.js`, `bsToast.js`, `dom.js`) and shared CSS (`custom.css`). Do NOT add or modify files here.
+- `src/common/` — **READ-ONLY**. Contains shared utilities (`api.js`, `bsToast.js`, `dom.js`) and shared CSS (`custom.css`). Do NOT add or modify files here.
 - `src/scss/` — **READ-ONLY**. Do not add or modify SCSS files.
 - Static assets (images, fonts) go in `src/public/`.
 - Icons: use Font Awesome classes (`fa-solid`, `fa-regular`, `fa-brands`). Do NOT add icon image files or SVG sprite sheets.
@@ -64,7 +64,6 @@ import '../css/<page-name>.css';           // page-specific styles
 - **Do NOT add new files to `src/common/js/`.** It is READ-ONLY. Only import from it.
 - Use the existing common utilities where applicable (import-only — do not modify):
   - `src/common/js/api.js` — for all HTTP requests (uses `VITE_API_BASE_URL`).
-  - `src/common/js/toast.js` — for SweetAlert2 toast notifications.
   - `src/common/js/bsToast.js` — for Bootstrap native toast notifications.
   - `src/common/js/dom.js` — for DOM helpers (`$`, `$$`, `on`, `off`, `ready`).
 - Do not use `var`. Use `const` by default, `let` only when reassignment is needed.
