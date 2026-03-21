@@ -40,7 +40,7 @@ This document defines coding conventions for AI agents working in this repositor
 
 - Always use Bootstrap utility classes first (e.g. `mt-3`, `d-flex`, `text-muted`).
 - **Write custom styles as plain CSS only.** `src/scss/` is READ-ONLY in this repository, so do not add new SCSS files.
-- All custom CSS must be page-specific: `src/page_assets/<page-name>/css/<page-name>.css`. Do NOT add styles to `src/common/css/`.
+- All custom CSS must be page-specific: `src/page_assets/<page-name>/css/main.css`. Do NOT add styles to `src/common/css/`.
 - Use Bootstrap's CSS custom properties (`var(--bs-primary)`, `var(--bs-body-bg)`, etc.) instead of hardcoding colors or spacing values.
 - Do NOT write new SCSS component files under `src/scss/components/`.
 - Keep custom CSS minimal; prefer Bootstrap's built-in classes.
@@ -53,7 +53,7 @@ import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 window.bootstrap = bootstrap;
 import '../../../scss/styles.scss';        // Bootstrap + SCSS theme
 import '../../../common/css/custom.css';   // existing shared overrides (READ-ONLY — do not edit)
-import '../css/<page-name>.css';           // page-specific styles
+import '../css/main.css';           // page-specific styles
 ```
 
 ## JavaScript Rules
@@ -74,7 +74,7 @@ import '../css/<page-name>.css';           // page-specific styles
   window.bootstrap = bootstrap;
   import '../../../scss/styles.scss';
   import '../../../common/css/custom.css'; // READ-ONLY
-  import '../css/<page-name>.css';
+  import '../css/main.css';
   ```
   Then import your page modules:
   ```js
@@ -86,7 +86,7 @@ import '../css/<page-name>.css';           // page-specific styles
 
 1. Create `src/<page-name>.html` with the standard `<head>` (charset, viewport, title, favicon, meta tags).
 2. Create `src/page_assets/<page-name>/js/main.js` — Bootstrap + SCSS + CSS imports, then import page modules.
-3. Create `src/page_assets/<page-name>/css/<page-name>.css` — page-specific styles.
+3. Create `src/page_assets/<page-name>/css/main.css` — page-specific styles.
 4. For each logical concern (table, form, chart, etc.) create `src/page_assets/<page-name>/js/<script-name>.js` and import it from `main.js`.
 5. Reference only the entry script in HTML: `<script type="module" src="/page_assets/<page-name>/js/main.js"></script>`.
 6. Reuse the navbar and footer markup from `index.html`.
@@ -102,7 +102,7 @@ src/
         table.js      ← table logic
         form.js       ← form/validation logic
       css/
-        users.css     ← page-specific styles
+        main.css     ← page-specific styles
 ```
 
 ## Environment Variables
