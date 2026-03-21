@@ -59,8 +59,8 @@ npm run preview
 │   ├── common/
 │   │   └── js/
 │   │       ├── api.js           # Fetch-based API client
-│   │       └── bsToast.js
-│   │       └── dom.js
+│   │       ├── bsToast.js       # Bootstrap toast helpers
+│   │       └── dom.js           # DOM utility helpers
 │   ├── page_assets/
 │   │   └── index/
 │   │       └── js/main.js       # Entry point for index page
